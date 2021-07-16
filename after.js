@@ -5,7 +5,7 @@ const { parse } = require('node-html-parser');
 const reportKey = 'mmpayfereport_demo';
 
 console.log(process.argv);
-function replaceIt(someFile) {
+function replaceIt (someFile) {
   fs.readFile(someFile, 'utf8', (err, data) => {
     if (err) {
       console.log(err);
@@ -19,7 +19,7 @@ function replaceIt(someFile) {
   });
 }
 
-function replaceDirSync(pathStr) {
+function replaceDirSync (pathStr) {
   const pa = fs.readdirSync(pathStr);
   pa.forEach((ele) => {
     const info = fs.statSync(`${pathStr}/${ele}`);
@@ -34,7 +34,7 @@ function replaceDirSync(pathStr) {
   });
 }
 
-function replaceTpl() {
+function replaceTpl () {
   const htmlData = parse(fs.readFileSync('./public/index.html'), { comment: true });
 
   htmlData.querySelector('.topbar').remove();
@@ -53,5 +53,5 @@ function replaceTpl() {
   fs.writeFileSync('./public/index.html', htmlData.toString());
 }
 
-replaceTpl();
+// replaceTpl();
 replaceDirSync('./build');
