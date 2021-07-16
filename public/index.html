@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width,initial-scale=1.0">
+  <link rel="shortcut icon" href="https://wx.gtimg.com/core/favicon.ico">
+  <title>WeChat Pay</title>
+  <script type="text/javascript" src="https://wx.gtimg.com/third/jquery/jquery-1.7.min.js"></script> <!-- 安全组件需要 -->
+  <script type="text/javascript" src="https://wx.gtimg.com/third/i18n/i18n.min.js"></script> <!-- 安全组件需要 -->
+  <link href=https://www.tenpay.com/v2/res/js/global/tenpayctrl_v2-min.js rel=preload as=script> <!-- 安全组件需要 -->
+  <link href="https://wx.gtimg.com/pay/css/common/common.css?v=20191017" rel="stylesheet" type="text/css" >
+  <!-- 上线时替换成include引用方式 -->
+  <!--以下代码为统一追加的前端监控上报组件仅用于商户平台，切记不可删除-->
+  <script>
+    var WXPAY_JSLOG_REPORT_CONF = {
+      name: "mmpaymerchant_fe", //上报模块名称: 'mmpaymerchant_fe'只用于商户平台所有上报需求，业务如果将该模版用在了其他产品，则要根据产品需求改对应的'name'模块名称 (商户平台统一使用'mmpaymerchant_fe')
+      needUinDim: true, //商户平台特殊上报标识
+      reportCgi: true, //cgi上报打开
+      //hostname: "pay.weixin.qq.com",//定义host，只在'xxx'域名下上报
+      debug: true //开发环境开启debug=true，window.onerror捕获的错误会展示在控制台 默认是关闭
+    };
+  </script>
+  <script type="text/javascript" charset="UTF−8"
+    src="https://wx.gtimg.com/static/cdn/wxpay-fe-report/report/report.min.0.0.44.js"></script>
+</head>
+
+<body class="page-panel">
+
+  <!-- 头部 [[ -->
+  
+  <?php $this->load->view('en / common / header_v.shtml'); ?>
+
+  <!-- 头部 ]] -->
+
+  <!-- 内容 [[ -->
+  <div class="container wrap">
+
+    <!-- 侧边栏 [[ -->
+    <?php $this->load->view('common / left.shtml', $left_menu); ?>
+    <!-- 侧边栏 ]] -->
+
+    <!-- 主区域 [[ -->
+    <div class="content">
+      <div id="app"></div>
+    </div>
+    <script>
+      var getTokenDom = document.getElementById("token");
+      window.token_name = getTokenDom.name;//ecc_csrf_token
+      window.csrf_token = getTokenDom.value;
+    </script>
+    <!-- 主区域 ]] -->
+
+    <!-- 安全组件需要 [[ -->
+    <input id="seed" type="hidden" name="time_seed" value="<?php echo $time_seed; ?>">
+    <input type="hidden" id="token" name="<?php echo $csrf_name; ?>" value="<?php echo $csrf_value; ?>">
+    <!-- 安全组件需要 ]] -->
+  </div>
+  <!-- 内容 ]] -->
+
+  <!-- 底部 [[ -->
+  <?php $this->load->view('comm / footer_v2.html');?>
+  <!-- 底部 ]] -->
+
+  <!-- 浏览器小于等于ie8 跳转到升级引导页 -->
+  <!--[if lte IE 8]>
+    <script>
+        window.location.href='https://pay.weixin.qq.com/public/error/browser_tips_en';
+    </script>
+    <![endif]-->
+
+  <div style="display: none;">
+    <!-- 获取最新代码对应的git版本号 -->
+    $____________________________________________!@#!
+  </div>
+  <!--#include virtual="/sinclude/pay/common/mmpayMCHCertV3.shtml"-->
+  <!-- 安全组件需要 -->
+  <!--#include virtual="/sinclude/jsi/mch/mch.overseasSecFactor.js.html"-->
+  <!-- 安全组件需要 -->
+</body>
+
+</html>

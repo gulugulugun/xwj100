@@ -1,0 +1,49 @@
+{
+	"errorcode": 0,
+	"msg": "success",
+	"data": {
+    "total": 100,
+		"applyment": [
+      {
+			"applyment_id": 100011294219,
+			"appid_name": "3095043101",
+			"appid_type": 4,
+			"appid_type_text": "\u4f01\u4e1a\u5fae\u4fe1",
+			"appid": "wx426b3015555a46be",
+			"applyment_modify_time": "2019-06-05 20:28:46",
+			"applyment_state": 1,
+			"applyment_state_text": "\u5df2\u53d1\u8d77"
+		},
+    {
+			"applyment_id": 100011294220,
+			"appid_name": "3095043101",
+			"appid_type": 4,
+			"appid_type_text": "\u4f01\u4e1a\u5fae\u4fe1",
+			"appid": "wx426b3015555a46be",
+			"applyment_modify_time": "2019-06-05 20:29:57",
+			"applyment_state": 1,
+			"applyment_state_text": "\u5df2\u53d1\u8d77"
+		},
+		{
+			"applyment_id": 100011294221,
+			"appid_name": "3095043101",
+			"appid_type": 4,
+			"appid_type_text": "\u4f01\u4e1a\u5fae\u4fe1",
+			"appid": "wx426b3015555a46be",
+			"applyment_modify_time": "2019-06-05 20:29:57",
+			"applyment_state": 1,
+			"applyment_state_text": "\u5df2\u53d1\u8d77"
+		},
+		{
+			"applyment_id": 100011294222,
+			"appid_name": "3095043101",
+			"appid_type": 4,
+			"appid_type_text": "\u4f01\u4e1a\u5fae\u4fe1",
+			"appid": "wx426b3015555a46be",
+			"applyment_modify_time": "2019-06-05 20:29:57",
+			"applyment_state": 1,
+			"applyment_state_text": "\u5df2\u53d1\u8d77"
+		}
+  ]
+	}
+}

@@ -1,0 +1,65 @@
+dev: &base
+  push:
+    - docker:
+        image: node
+      wework:
+        title: $ORANGE_REPO_SLUG
+      stages:
+        - name: 检测 package.json 合法性
+          script: node before.js
+        - name: 跳转目录-安装依赖-执行构建
+          script: ['npm install --registry=https://mirrors.tencent.com/npm/','npm run build -- --$ORANGE_REPO_SLUG']
+        - name: 执行后置脚本
+          script: node after.js -- --$ORANGE_REPO_SLUG
+        - name: 同步文件至测试机
+          type: orange-ci:transfer
+          options:
+            dist: /build/
+            to: /data/sites/$ORANGE_REPO_SLUG/$ORANGE_BRANCH/
+            ips:
+              - 9.134.4.140
+            after:
+              - node /data/tangdao/server/src/orange.js $ORANGE_BUILD_USER $ORANGE_REPO_SLUG $ORANGE_BUILD_WEB_URL $ORANGE_COMMIT 'msg' $ORANGE_BRANCH
+        - name: message
+          type: wework:message
+          options:
+            message: "[唐刀平台地址] \n
+                      [http://td.wxp.oa.com/](http://td.wxp.oa.com/) \n"
+
+  tag_push:
+    - network: devnet
+      wework:
+        title: $ORANGE_REPO_SLUG
+      stages:
+        - name: 获取 cdn 地址前缀
+          type: cdn:go
+          envExport:
+            cdnUrl: CDN_URL
+
+        - name: 检测 package.json 合法性
+          script: node before.js
+        - name: 跳转目录-安装依赖-执行构建
+          script: ['npm install --registry=https://mirrors.tencent.com/npm/','npm run build -- --$ORANGE_REPO_SLUG']
+        - name: 执行后置脚本
+          script: node after.js -- --$ORANGE_REPO_SLUG
+        - name: 同步文件至测试机
+          type: orange-ci:transfer
+          options:
+            dist: /build/
+            to: /data/sites/$ORANGE_REPO_SLUG/$ORANGE_BRANCH/
+            ips:
+              - 9.134.4.140
+            after:
+              - node /data/tangdao/server/src/orange.js $ORANGE_BUILD_USER $ORANGE_REPO_SLUG $ORANGE_BUILD_WEB_URL $ORANGE_COMMIT 'msg' $ORANGE_BRANCH 1
+        - name: message
+          type: wework:message
+          options:
+            message: "[唐刀平台地址] \n
+                      [http://td.wxp.oa.com/](http://td.wxp.oa.com/) \n"
+
+        - name: cdn-go
+          type: cdn:go
+          options:
+            dist: build/
+
+master: *base
