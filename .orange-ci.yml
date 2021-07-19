@@ -1,14 +1,14 @@
 dev: &base
   push:
     - docker:
-        image: node:14
+        image: node:16
       wework:
         title: $ORANGE_REPO_SLUG
       stages:
         - name: 检测 package.json 合法性
           script: node before.js
         - name: node-sass
-          scripts: ['npm install node-sass --registry=http://r.tnpm.oa.com --sass_binary_site=http://tnpm.oa.com/mirrors/node-sass']
+          script: ['npm install node-sass --registry=http://r.tnpm.oa.com --sass_binary_site=http://tnpm.oa.com/mirrors/node-sass']
         - name: 跳转目录-安装依赖-执行构建
           script: ['npm install --registry=https://mirrors.tencent.com/npm/','npm run build -- --$ORANGE_REPO_SLUG']
         - name: 执行后置脚本
