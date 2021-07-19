@@ -1,7 +1,7 @@
 dev: &base
   push:
     - docker:
-        image: node:14.0.0
+        image: node:14
       wework:
         title: $ORANGE_REPO_SLUG
       stages:
